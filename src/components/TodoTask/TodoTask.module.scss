@@ -1,0 +1,26 @@
+%initial-styles {
+  padding: 10px 15px;
+  font-size: 18px;
+  border: 1px solid rgb(144, 144, 148);
+  border-radius: 4px;
+}
+
+.formWrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputTask {
+  @extend %initial-styles;
+  width: 70%;
+}
+
+.btnCreate {
+  @extend %initial-styles;
+  width: 20%;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  background-color: rgb(4, 169, 211);
+  cursor: pointer;
+}

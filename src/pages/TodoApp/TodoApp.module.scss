@@ -1,0 +1,25 @@
+.mainContainer {
+  max-width: 600px;
+  min-width: 320px;
+  margin: 120px auto;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgb(247, 246, 248);
+  border: 1px solid rgb(177, 130, 3);
+  border-radius: 8px;
+}
+
+.mainTitle {
+  margin: 0;
+  padding: 20px 0 30px;
+  font-size: 45px;
+  text-transform: uppercase;
+  color: rgb(49, 50, 131);
+}
+
+.sectionWrapper {
+  width: 100%;
+}
