@@ -1,36 +1,35 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
 import styles from './TaskList.module.scss';
+import TaskListItem from './TaskListItem';
+import { getTasksAction } from '../../actions/actionCreators';
 
-function TaskList () {
+function TaskList (props) {
+  const { tasks, isFetching, error, getTasks } = props;
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  const mapTask = t => <TaskListItem key={t.id} task={t} />;
+
   return (
-    <article className={styles.articleWrapper}>
-      <ul className={styles.ulWrapper}>
-        <li className={styles.liWrapper}>
-          <div>
-            <input
-              className={styles.inputCheckbox}
-              type='checkbox'
-              name='isDone'
-            />
-            <span className={styles.textTask}>Task 1</span>
-          </div>
-
-          <button className={styles.deleteBtn}>Delete</button>
-        </li>
-        <li className={styles.liWrapper}>
-          <div>
-            <input
-              className={styles.inputCheckbox}
-              type='checkbox'
-              name='isDone'
-            />
-            <span className={styles.textTask}>Task 2</span>
-          </div>
-          <button className={styles.deleteBtn}>Delete</button>
-        </li>
-      </ul>
-    </article>
+    <>
+      {isFetching && <div>Loading. Please, wait...</div>}
+      {error && <div>ERROR!!!!</div>}
+      {!isFetching && !error && (
+        <article className={styles.articleWrapper}>
+          <ul className={styles.ulWrapper}>{tasks.map(mapTask)}</ul>
+        </article>
+      )}
+    </>
   );
 }
 
-export default TaskList;
+const mapStateToProps = ({ taskData }) => taskData;
+
+const mapDispatchToProps = dispatch => ({
+  getTasks: () => dispatch(getTasksAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);

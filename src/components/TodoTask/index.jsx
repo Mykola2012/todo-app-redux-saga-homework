@@ -1,11 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
+import { connect } from 'react-redux';
+import { createTaskAction } from '../../actions/actionCreators';
 import styles from './TodoTask.module.scss';
 
-function TodoTask () {
+function TodoTask (props) {
+  const { create } = props;
+
   const initialValues = { task: '' };
 
   const handleSubmit = (values, formikBag) => {
+    create(values);
     formikBag.resetForm();
   };
 
@@ -29,4 +34,10 @@ function TodoTask () {
   );
 }
 
-export default TodoTask;
+const mapDispatchToProps = dispatch => ({
+  create: values => {
+    dispatch(createTaskAction(values));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(TodoTask);

@@ -1,48 +1,52 @@
 const todoDB = [
   {
     id: 0,
-    task: '',
+    task: 'Test task 1',
+    isDone: false,
+  },
+  {
+    id: -1,
+    task: 'Test task 2',
     isDone: false,
   },
 ];
 
 class TodoDB {
   constructor (arr) {
-    this.todoTask = [...arr];
+    this.tasks = [...arr];
   }
 
-  createTodoTask (newTodoTask) {
-    this.todoTask.push({ ...newTodoTask, id: Date.now(), isDone: false });
-    return this.todoTask[this.todoTask.length - 1];
+  createTask (newTask) {
+    this.tasks.push({ ...newTask, id: Date.now(), isDone: false });
+    return this.tasks[this.tasks.length - 1];
   }
 
-  getTodoTask () {
-    return [...this.todoTask];
+  getTasks () {
+    return [...this.tasks];
   }
 
-  updateTodoTask (id, values) {
-    const foundTodoTaskIndex = this.todoTask.findIndex(c => c.id === id);
-    this.todoTask[foundTodoTaskIndex] = {
-      ...this.todoTask[foundTodoTaskIndex],
+  updateTask (id, values) {
+    const foundTaskIndex = this.tasks.findIndex(c => c.id === id);
+    this.tasks[foundTaskIndex] = {
+      ...this.tasks[foundTaskIndex],
       ...values,
     };
-    return this.todoTask[foundTodoTaskIndex];
+    return this.tasks[foundTaskIndex];
   }
 
-  deleteTodoTask (id) {
-    const foundTodoTaskIndex = this.todoTask.findIndex(c => c.id === id);
-    this.todoTask.splice(foundTodoTaskIndex, 1);
+  removeTask (id) {
+    const foundTaskIndex = this.tasks.findIndex(t => t.id === id);
+    this.tasks.splice(foundTaskIndex, 1);
   }
 }
 
 const todoTaskDbInstace = new TodoDB(todoDB);
 
-export const createTodoTask = values =>
-  todoTaskDbInstace.createTodoTask(values);
+export const createTask = values => todoTaskDbInstace.createTask(values);
 
-export const getTodoTask = () => todoTaskDbInstace.getTodoTask();
+export const getTasks = () => todoTaskDbInstace.getTasks();
 
-export const updateTodoTask = (id, values) =>
-  todoTaskDbInstace.updateTodoTask(id, values);
+export const updateTask = (id, values) =>
+  todoTaskDbInstace.updateTask(id, values);
 
-export const deleteTodoTask = id => todoTaskDbInstace.deleteTodoTask(id);
+export const removeTask = id => todoTaskDbInstace.removeTask(id);
