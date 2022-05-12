@@ -16,7 +16,7 @@
 .liWrapper {
   width: 90%;
   margin: 10px 0;
-  padding: 15px 40px;
+  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,10 +26,25 @@
   border-bottom: 1px solid rgb(129, 129, 129);
 }
 
+.inputCheckbox {
+  cursor: pointer;
+}
+
+.taskWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .textTask {
-  padding-left: 20px;
+  padding: 0 35px 0 20px;
   font-weight: 600;
+  word-break: break-all;
+  line-height: 25px;
   color: rgb(49, 50, 131);
+}
+
+.doneTextTask {
+  text-decoration: line-through;
 }
 
 .deleteBtn {
