@@ -1,7 +1,9 @@
+import classNames from 'classnames';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import { connect } from 'react-redux';
 import { createTaskAction } from '../../actions/actionCreators';
+import { TASK_VALIDATION_SCHEMA } from '../../utils/validationSchemas';
 import styles from './TodoTask.module.scss';
 
 function TodoTask (props) {
@@ -15,21 +17,34 @@ function TodoTask (props) {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {formikProps => (
-        <Form className={styles.formWrapper}>
-          <Field
-            className={styles.inputTask}
-            name='task'
-            type='text'
-            placeholder='Task'
-          />
-          <ErrorMessage name='task'>{msg => <div>{msg}</div>}</ErrorMessage>
-          <button className={styles.btnCreate} type='submit'>
-            Create
-          </button>
-        </Form>
-      )}
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={TASK_VALIDATION_SCHEMA}
+    >
+      {formikProps => {
+        const classNameInput = classNames(styles.inputTask, {
+          [styles.inputInvalid]:
+            formikProps.errors.task && formikProps.touched.task,
+        });
+
+        return (
+          <Form className={styles.formWrapper}>
+            <Field
+              className={classNameInput}
+              name='task'
+              type='text'
+              placeholder='Task'
+            />
+            <ErrorMessage name='task'>
+              {msg => <div className={styles.errorMessage}>{msg}</div>}
+            </ErrorMessage>
+            <button className={styles.btnCreate} type='submit'>
+              Create
+            </button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 }

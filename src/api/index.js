@@ -1,13 +1,8 @@
 const todoDB = [
   {
     id: 0,
-    task: 'Test task 1',
+    task: 'Studying is not about time. It’s about effort.',
     isDone: false,
-  },
-  {
-    id: -1,
-    task: 'Test task 2',
-    isDone: true,
   },
 ];
 

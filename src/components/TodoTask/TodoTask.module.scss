@@ -5,6 +5,10 @@
   border-radius: 4px;
 }
 
+%invalid-border-color {
+  border: 1px solid rgb(207, 5, 5);
+}
+
 .formWrapper {
   position: relative;
   display: flex;
@@ -14,6 +18,21 @@
 .inputTask {
   @extend %initial-styles;
   width: 70%;
+}
+
+.inputInvalid {
+  @extend %invalid-border-color;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 50px;
+  padding: 3px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: rgb(207, 5, 5);
+  @extend %invalid-border-color;
+  border-radius: 3px;
 }
 
 .btnCreate {
