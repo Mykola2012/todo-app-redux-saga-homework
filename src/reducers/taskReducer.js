@@ -15,9 +15,9 @@ const taskReducer = (state = initialState, action) => {
     }
     case ACTION_TYPES.CREATE_TASK_SUCCESS: {
       const { newTask } = action;
-      const { task } = state;
-      const newTasks = [...task, { ...newTask }];
-      return { ...state, task: newTasks, isFetching: false };
+      const { tasks } = state;
+      const newTasks = [...tasks, { ...newTask }];
+      return { ...state, tasks: newTasks, isFetching: false };
     }
     case ACTION_TYPES.CREATE_TASK_ERROR: {
       const { err } = action;
@@ -46,7 +46,7 @@ const taskReducer = (state = initialState, action) => {
       const { tasks } = state;
 
       const newTasks = [...tasks];
-      const updatedTaskIndex = newTasks.findIndex(c => c.id === updatedTask.id);
+      const updatedTaskIndex = newTasks.findIndex(t => t.id === updatedTask.id);
       newTasks[updatedTaskIndex] = { ...updatedTask };
       return { ...state, tasks: newTasks, isFetching: false };
     }

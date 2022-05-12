@@ -5,7 +5,9 @@ import { removeTask, updateTaskAction } from '../../actions/actionCreators';
 
 function TaskListItem (props) {
   const {
-    task: { id, tasks, isDone, remove, update },
+    task: { id, task, isDone },
+    remove,
+    update,
   } = props;
 
   const handleChange = () => {
@@ -21,9 +23,10 @@ function TaskListItem (props) {
           <input
             className={styles.inputCheckbox}
             type='checkbox'
+            checked={isDone}
             onChange={handleChange}
           />
-          <span className={styles.textTask}>{tasks}</span>
+          <span className={styles.textTask}>{task}</span>
         </div>
 
         <button onClick={handleClickDelete} className={styles.deleteBtn}>

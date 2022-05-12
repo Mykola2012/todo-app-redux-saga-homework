@@ -33,22 +33,22 @@ export const getTasksError = err => ({
 
 export const updateTaskAction = (values, id) => ({
   type: ACTION_TYPES.UPDATE_TASK_ACTION,
-  id,
   values,
+  id,
 });
 export const updateTaskRequest = () => ({
   type: ACTION_TYPES.UPDATE_TASK_REQUEST,
 });
-export const updateTaskSuccess = updatedContact => ({
+export const updateTaskSuccess = updatedTask => ({
   type: ACTION_TYPES.UPDATE_TASK_SUCCESS,
-  updatedContact,
+  updatedTask,
 });
 export const updateTaskError = err => ({
   type: ACTION_TYPES.UPDATE_TASK_ERROR,
   err,
 });
 
-export const removeTask = tasktId => ({
+export const removeTask = taskId => ({
   type: ACTION_TYPES.REMOVE_TASK,
-  tasktId,
+  taskId,
 });

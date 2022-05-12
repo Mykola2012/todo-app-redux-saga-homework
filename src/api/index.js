@@ -7,7 +7,7 @@ const todoDB = [
   {
     id: -1,
     task: 'Test task 2',
-    isDone: false,
+    isDone: true,
   },
 ];
 
@@ -26,7 +26,7 @@ class TodoDB {
   }
 
   updateTask (id, values) {
-    const foundTaskIndex = this.tasks.findIndex(c => c.id === id);
+    const foundTaskIndex = this.tasks.findIndex(t => t.id === id);
     this.tasks[foundTaskIndex] = {
       ...this.tasks[foundTaskIndex],
       ...values,
