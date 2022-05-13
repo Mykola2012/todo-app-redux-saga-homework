@@ -48,7 +48,18 @@ export const updateTaskError = err => ({
   err,
 });
 
-export const removeTask = taskId => ({
-  type: ACTION_TYPES.REMOVE_TASK,
-  taskId,
+export const removeTaskAction = id => ({
+  type: ACTION_TYPES.UPDATE_TASK_ACTION,
+  id,
+});
+export const removeTaskRequest = () => ({
+  type: ACTION_TYPES.REMOVE_TASK_REQUEST,
+});
+export const removeTaskSuccess = id => ({
+  type: ACTION_TYPES.REMOVE_TASK_SUCCESS,
+  id,
+});
+export const removeTaskError = err => ({
+  type: ACTION_TYPES.REMOVE_TASK_ERROR,
+  err,
 });

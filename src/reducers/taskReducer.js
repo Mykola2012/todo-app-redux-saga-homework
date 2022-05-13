@@ -54,16 +54,24 @@ const taskReducer = (state = initialState, action) => {
       const { err } = action;
       return { ...state, error: err, isFetching: false };
     }
-    case ACTION_TYPES.REMOVE_TASK: {
-      const { taskId } = action;
+
+    case ACTION_TYPES.REMOVE_TASK_REQUEST: {
+      return { ...state, isFetching: true, error: null };
+    }
+    case ACTION_TYPES.REMOVE_TASK_SUCCESS: {
+      const { id } = action;
       const { tasks } = state;
 
       const newTasks = [...tasks];
-      const taskIndex = newTasks.findIndex(c => c.id === taskId);
-      newTasks.splice(taskIndex, 1);
-
-      return { ...state, tasks: newTasks };
+      const removedTaskIndex = newTasks.findIndex(t => t.id === id);
+      newTasks.splice(removedTaskIndex, 1);
+      return { ...state, tasks: newTasks, isFetching: false };
     }
+    case ACTION_TYPES.REMOVE_TASK_ERROR: {
+      const { err } = action;
+      return { ...state, error: err, isFetching: false };
+    }
+
     default:
       return state;
   }

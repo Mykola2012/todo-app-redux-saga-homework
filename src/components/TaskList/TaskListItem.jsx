@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import styles from './TaskList.module.scss';
-import { removeTask, updateTaskAction } from '../../actions/actionCreators';
+import {
+  removeTaskAction,
+  updateTaskAction,
+} from '../../actions/actionCreators';
 import classNames from 'classnames';
 
 function TaskListItem (props) {
@@ -47,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(updateTaskAction(values, id));
   },
   remove: id => {
-    dispatch(removeTask(id));
+    dispatch(removeTaskAction(id));
   },
 });
 

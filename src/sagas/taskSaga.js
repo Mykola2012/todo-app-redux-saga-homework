@@ -6,11 +6,14 @@ import {
   getTasksError,
   getTasksRequest,
   getTasksSuccess,
+  removeTaskError,
+  removeTaskRequest,
+  removeTaskSuccess,
   updateTaskError,
   updateTaskRequest,
   updateTaskSuccess,
 } from '../actions/actionCreators';
-import { createTask, getTasks, updateTask } from '../api';
+import { createTask, getTasks, removeTask, updateTask } from '../api';
 
 export function * createTaskSaga (action) {
   yield put(createTaskRequest());
@@ -40,5 +43,15 @@ export function * updateTaskSaga ({ id, values }) {
     yield put(updateTaskSuccess(data));
   } catch (e) {
     yield put(updateTaskError(e));
+  }
+}
+
+export function * removeTaskSaga ({ id }) {
+  yield put(removeTaskRequest());
+  try {
+    yield removeTask(id);
+    yield put(removeTaskSuccess(id));
+  } catch (e) {
+    yield put(removeTaskError(e));
   }
 }
