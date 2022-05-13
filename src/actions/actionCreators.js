@@ -49,7 +49,7 @@ export const updateTaskError = err => ({
 });
 
 export const removeTaskAction = id => ({
-  type: ACTION_TYPES.UPDATE_TASK_ACTION,
+  type: ACTION_TYPES.REMOVE_TASK_ACTION,
   id,
 });
 export const removeTaskRequest = () => ({
